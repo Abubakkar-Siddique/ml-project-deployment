@@ -9,15 +9,6 @@ $(function () {
   $("#inputhandler").on("click", inputHandler);
 });
 
-window.onload = function () {
-  $("#calculateButton").click(function () {
-    console.log("clicked");
-    if (document.getElementById("result").innerText) {
-      $("#resultmodal").modal("show");
-    }
-  });
-};
-
 function Area() {
   if ($("#areaheading").attr("aria-expanded") == "false") {
     $("#areaheading i").removeClass("fa-plus-circle");
