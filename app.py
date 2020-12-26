@@ -5,7 +5,7 @@ import numpy as np
 
 
 # create app and load the trained Model app =
-app = Flask(__name__)
+app = Flask(__name__, template_folder='Templates', static_folder='Static')
 model = pickle.load(open('seeds_predict_model.pkl', 'rb'))
 
 
