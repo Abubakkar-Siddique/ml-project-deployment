@@ -76,7 +76,7 @@
           </div>
 
           <div id="inputs-form">
-            <form action="{{ url_for('predict')}}" method="POST">
+            <form action="/predict" method="POST">
               <!-- Area Input -->
               <div class="form-group row">
                 <label class="form-head col-lg-4 col-4 offset-lg-1 col-form-label">
@@ -232,6 +232,8 @@
                     class="btn btn-success"
                     id="calculateButton"
                     style="width: 100%"
+                    data-toggle="modal"
+                    data-target="#resultModal"
                     >
                     Predict
                   </button>
