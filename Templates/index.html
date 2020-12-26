@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="./jquery-3.4.1.min.js"></script>
+    <script src="./popper.min.js"></script>
+    <script src="./bootstrap.min.js"></script>
+    <script src="./prefixfree.min.js"></script>
+    <script src="../Static/JS/jsFile.js"></script>
+
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="./font-awesome.min.css" />
+    <link rel="stylesheet" href="../Static/CSS/mystyles.css" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wheat Seeds Classification Prediction System</title>
+  </head>
+  <body class="container">
+    <!-- Main div -->
+    <div class="container mt-5 mb-5">
+      <div class="row">
+        <!-- Left Card for Project Introduction -->
+        <div class="card col-lg-7 text-center">
+          <h1 class="m-5">
+            <strong>Wheat Seeds Classification Prediction System</strong>
+          </h1>
+
+          <!-- Salutaion -->
+          <p class="ml-5" id="subText">Asslam-o-Alaikum !</p>
+
+          <!-- Instructions -->
+          <ul class="instructions ml-4 mr-4">
+            <li>
+              The Wheat Seeds Classification Prediction System involves the prediction of species given
+              measurements of seeds from different varieties of wheat.
+            </li> </br>
+
+            <li>It is a binary (2-class) classification problem.</li> </br>
+
+            <li>
+              Measurements of different geometrical properties of wheat seeds are needed as input.
+            </li> </br>
+
+            <li>
+              Three different varieties of Wheat Seeds: Kama, Rosa and
+              Canadian, we initially predict from this system.  
+            </li> </br>
+
+            <li>
+              The main aim of this project is to predict that, Wheat seed are
+              from which variety?
+            </li> </br>
+          </ul>
+
+          <!-- Read Instructions button -->
+          <button
+            class="btn btn-secondary mt-4"
+            data-toggle="modal"
+            data-target="#instructionmodal"
+          >
+            Read Instructions
+          </button>
+
+          <ul class="instructions ml-4 mr-4">
+            If you have any query and suggestions. Hit me at: <a href="mailto:chaudryabubakar749@gmail.com" target="_blank">Abubakkar Siddique</a>  </br>
+          </ul>
+        </div>
+
+        <!-- Right Card for System Inputs -->
+        <div class="card1 col-lg-5 text-center">
+          <div>
+            <h2 class="main-head m-5">
+              <strong>Predict Seeds Variety</strong>
+            </h2>
+          </div>
+
+          <div id="inputs-form">
+            <form action="{{ url_for('predict')}}" method="POST">
+              <!-- Area Input -->
+              <div class="form-group row">
+                <label class="form-head col-lg-4 col-4 offset-lg-1 col-form-label">
+                  Area
+                </label>
+                <div class="col-lg-6 col-xl-5 col-6">
+                  <div class="inputNumber">
+                    <input
+                      class="form-control"
+                      name="area"
+                      id="area"
+                      type="number"
+                      min="8.0" 
+                      max="25"
+                      required
+                     >
+                    </input>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Perimeter Input -->
+              <div class="form-group row">
+                <label class="form-head col-lg-4 col-4 offset-lg-1 col-form-label">
+                  Perimeter
+                </label>
+                <div class="col-lg-6 col-xl-5 col-6">
+                  <div class="inputNumber">
+                    <input
+                      class="form-control"
+                      name="perimeter"
+                      id="perimeter"
+                      type="number"
+                      min="10" 
+                      max="19"
+                      required
+                     >
+                    </input>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Compactness Input -->
+              <div class="form-group row">
+                <label class="form-head col-lg-4 col-4 offset-lg-1 col-form-label">
+                  Compactness
+                </label>
+                <div class="col-lg-6 col-xl-5 col-6">
+                  <div class="inputNumber">
+                    <input
+                      class="form-control"
+                      name="compactness"
+                      id="compactness"
+                      type="number"
+                      min="0" 
+                      max="2"
+                      required
+                     >
+                    </input>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Length of kernel Input -->
+              <div class="form-group row">
+                <label class="form-head col-lg-4 col-4 offset-lg-1 col-form-label">
+                  Length of kernel
+                </label>
+                <div class="col-lg-6 col-xl-5 col-6">
+                  <div class="inputNumber">
+                    <input
+                      class="form-control"
+                      name="lengthKernal"
+                      id="lengthKernal"
+                      type="number"
+                      min="3.000" 
+                      max="9.000"
+                      required
+                     >
+                    </input>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Width of kernel Input -->
+              <div class="form-group row">
+                <label class="form-head col-lg-4 col-4 offset-lg-1 col-form-label">
+                  Width of kernel
+                </label>
+                <div class="col-lg-6 col-xl-5 col-6">
+                  <div class="inputNumber">
+                    <input
+                      class="form-control"
+                      name="widthKernal"
+                      id="widthKernal"
+                      type="number"
+                      min="1.00" 
+                      max="6.00"
+                      required
+                     >
+                    </input>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Asymmetry coefficient Input -->
+              <div class="form-group row">
+                <label class="form-head col-lg-4 col-4 offset-lg-1 col-form-label">
+                  Asymmetry Coefficient
+                </label>
+                <div class="col-lg-6 col-xl-5 col-6">
+                  <div class="inputNumber">
+                    <input
+                      class="form-control"
+                      name="asymmetry"
+                      id="asymmetry"
+                      type="number"
+                      min="0.400" 
+                      max="10.700"
+                      required
+                     >
+                    </input>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Length of kernel groove Input -->
+              <div class="form-group row">
+                <label class="form-head col-lg-4 col-4 offset-lg-1 col-form-label">
+                  Length of kernel groove
+                </label>
+                <div class="col-lg-6 col-xl-5 col-6">
+                  <div class="inputNumber">
+                    <input
+                      class="form-control"
+                      name="kernelGroove"
+                      id="kernelGroove"
+                      type="number"
+                      min="3.100" 
+                      max="8.550"
+                      required
+                     >
+                    </input>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Predict Button -->
+              <div class="form-group row mt-5">
+                <div class="col-lg-8 offset-lg-2 col-9 offset-1 mb-5">
+                  <button
+                    type="submit"
+                    class="btn btn-success"
+                    id="calculateButton"
+                    style="width: 100%"
+                    >
+                    Predict
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instruction Modal -->
+    <div class="modal fade" id="instructionmodal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" style="margin-left: 35%">
+              <strong>Instructions</strong>
+            </h4>
+          
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+             </button>
+          
+          </div>
+        
+          <div class="modal-body">
+            <!-- Instruction Heading -->
+            <div class="w-100 text-center">
+              <h5 style="padding-top: 10px">Input Attributes Details</h5>
+            </div>
+            <!-- Collapsable System Input Attributes in Instruction Modal -->
+            <div id="accordion">
+              <div class="card mt-1" style="background: rgb(173, 170, 170)">
+                <div class="card-header" id="areaheading" data-toggle="collapse" data-target="#areacollapse" aria-expanded="false" aria-controls="collapseOne"> 
+                     <i class="fas fa-plus-circle" style="color:rgb(32, 32, 32)">
+                      <b class="instruction-head ml-3">Area - Wheat Seed Area</b>
+                     </i>
+                </div>
+                <div id="areacollapse" class="collapse" aria-labelledby="areaheading" style="background:white" data-parent="#accordion">
+                  <div class="card-body" id="intruction-body">
+                    <p class="intruction-body" style="color:black">
+                      Possible values of Area: </br>
+                      Min value = 10  & Max value = 22 
+                    </p>
+                  </div>
+               </div>
+              </div>
+
+              <div class="card mt-1" style="background: rgb(173, 170, 170)">
+                <div class="card-header" id="periheading" data-toggle="collapse" data-target="#pericollapse" aria-expanded="false" aria-controls="collapseOne">
+                     <i class="fas fa-plus-circle" style="color:rgb(32, 32, 32)">
+                      <b class="instruction-head ml-3">Perimeter - Wheat Seed Perimeter</b>
+                     </i>
+                </div>
+                <div id="pericollapse" class="collapse" aria-labelledby="periheading" style="background:white" data-parent="#accordion">
+                  <div class="card-body" id="intruction-body">
+                    <p class="intruction-body" style="color:black">
+                      Possible values of perimeter: </br>
+                      Min value = 12  & Max value = 18
+                    </p>
+                  </div>
+               </div>
+              </div>
+
+              <div class="card mt-1" style="background: rgb(173, 170, 170)">
+                <div class="card-header" id="compheading" data-toggle="collapse" data-target="#compcollapse" aria-expanded="false" aria-controls="collapseOne">
+                  <i class="fas fa-plus-circle" style="color:rgb(32, 32, 32)">
+                    <b class="instruction-head ml-3">Compactness - Wheat Seed Compactness</b>
+                  </i>   
+                </div>
+                <div id="compcollapse" class="collapse" aria-labelledby="compheading" style="background:white" data-parent="#accordion">
+                  <div class="card-body" id="intruction-body">
+                    <p class="intruction-body" style="color:black">
+                      Formula for Compactness: (4*<i>pi</i>*Area) / (perimeter^2) </br>
+                      Possible values of Compactness: </br>
+                      Min value = 0.800  & Max value = 1.000
+                    </p>
+                  </div>
+               </div>
+              </div>
+
+              <div class="card mt-1" style="background: rgb(173, 170, 170)">
+                <div class="card-header" id="lkernelheading" data-toggle="collapse" data-target="#lkernelcollapse" aria-expanded="false" aria-controls="collapseOne">
+                     <i class="fas fa-plus-circle" style="color:rgb(32, 32, 32)">
+                      <b class="instruction-head ml-3">Length of Kernel - Wheat Seed Kernel</b>
+                     </i>
+                </div>
+                <div id="lkernelcollapse" class="collapse" aria-labelledby="lkernelheading" style="background:white" data-parent="#accordion">
+                  <div class="card-body" id="intruction-body">
+                    <p class="intruction-body" style="color:black">
+                      Possible values for Length of Kernel: </br>
+                      Min value = 4.500  & Max value = 7.000
+                    </p>
+                  </div>
+               </div>
+              </div>
+
+              <div class="card mt-1" style="background: rgb(173, 170, 170)">
+                <div class="card-header" id="wkernelheading" data-toggle="collapse" data-target="#wkernelcollapse" aria-expanded="false" aria-controls="collapseOne">
+                     <i class="fas fa-plus-circle" style="color:rgb(22, 21, 21); font-size:14px;">
+                      <b class="instruction-head ml-3">Width of Kernel - Wheat Seed Kernel</b>
+                     </i>
+                </div>
+                <div id="wkernelcollapse" class="collapse" aria-labelledby="wkernelheading" style="background:white" data-parent="#accordion">
+                  <div class="card-body" id="intruction-body">
+                    <p class="intruction-body" style="color:black">
+                      Possible values for Width of Kernel: </br>
+                      Min value = 2.00  & Max value = 4.500
+                    </p>
+                  </div>
+               </div>
+              </div>
+
+              <div class="card mt-1" style="background: rgb(173, 170, 170)">
+                <div class="card-header" id="asymheading" data-toggle="collapse" data-target="#asymcollapse" aria-expanded="false" aria-controls="collapseOne">
+                     <i class="fas fa-plus-circle" style="color:rgb(22, 21, 21); font-size:14px;">
+                      <b class="instruction-head ml-3">Asymmetry Coefficient - Wheat Seed Asymmetry</b>
+                     </i>
+                </div>
+                <div id="asymcollapse" class="collapse" aria-labelledby="asymheading" style="background:white" data-parent="#accordion">
+                  <div class="card-body" id="intruction-body">
+                    <p class="intruction-body" style="color:black">
+                      Possible values of Asymmetry Coefficient: </br>
+                      Min value = 0.500  & Max value = 9.000
+                    </p>
+                  </div>
+               </div>
+              </div>
+
+              <div class="card mt-1" style="background: rgb(173, 170, 170)">
+                <div class="card-header" id="lgrooveheading" data-toggle="collapse" data-target="#lgroovecollapse" aria-expanded="false" aria-controls="collapseOne">
+                     <i class="fas fa-plus-circle" style="color:rgb(22, 21, 21); font-size:14px;">
+                      <b class="instruction-head ml-3">Length of kernel groove - Wheat Seed Groove</b>
+                     </i>
+                </div>
+                <div id="lgroovecollapse" class="collapse" aria-labelledby="lgrooveheading" style="background:white" data-parent="#accordion">
+                  <div class="card-body" id="intruction-body">
+                    <p class="intruction-body" style="color:black">
+                      Possible values for Length of kernel groove: </br>
+                      Min value = 4.00  & Max value = 7.00
+                    </p>
+                  </div>
+               </div>
+              </div>
+
+              <div class="w-100 text-center mt-3" style="background: #009cff; color: white; height: 50px">
+                <h5 style="padding-top: 10px">Steps to Follow</h5>
+              </div>
+              <!-- Steps of Prediction -->
+              <div class="mt-3 ml-3">
+                <span style="font-weight: bolder">Step 1 : </span> Enter values of
+                <span style="font-weight: bolder; color: #009cff">Area, Perimeter, Compactness, Length of Kernel, Width of Kernel, Asymmetry Coefficient, Length of Kernel Groove
+                </span><br />
+                <span style="font-weight: bolder">Step 2 : </span> Click on
+                <span style="font-weight: bolder; color: #009cff">Predict</span>
+                Button<br />
+                <span style="font-weight: bolder">Step 3 : </span> Our Wheat Seeds Classification Prediction System will predict Variety of Seed 
+                <span style="font-weight: bolder; color: green">Kama</span>
+                    or <span style="font-weight: bolder; color:green">Rose </span>
+                    or <span style="font-weight: bolder; color:green">Canadian </span> ?
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Result Modal -->
+    <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" style="margin-left: 26%; margin-right: 17%">
+              <strong>Prediction of Model</strong>
+            </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          
+          </div>
+          <div class="modal-body text-center">
+            <!-- Arrow pointing downwards -->          
+              <i class="fas fa-arrow-down" style="color:rgb(22, 21, 21);align-content: center; font-size: 70px"></i>
+              <!-- Display of predicted result -->
+              <div class="result-box mt-3">
+                <p id="result">{{predicted_result}}</p>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <script>
+
+    
+    </script>
+  </body>
+</html>
